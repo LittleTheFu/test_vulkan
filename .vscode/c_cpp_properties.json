@@ -4,7 +4,8 @@
             "name": "windows-gcc-x64",
             "includePath": [
                 "${workspaceFolder}/third/glfw/include/",
-                "${workspaceFolder}/third/glm/"
+                "${workspaceFolder}/third/glm/",
+                "${workspaceFolder}/third/vulkan/include/"
             ],
             "compilerPath": "D:/Program Files/mingw64/mingw64/bin/gcc.exe",
             "cStandard": "${default}",
