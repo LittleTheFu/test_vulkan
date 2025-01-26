@@ -112,6 +112,11 @@ private:
         pickPhysicalDevice();
         createLogicalDevice();
         createSwapChain();
+        createGraphicsPipeline();
+    }
+
+    void createGraphicsPipeline() {
+
     }
 
     void createImageViews()
@@ -568,7 +573,7 @@ private:
         {
             vkDestroyImageView(device, imageView, nullptr);
         }
-        
+
         vkDestroySwapchainKHR(device, swapChain, nullptr);
         vkDestroyDevice(device, nullptr);
 
