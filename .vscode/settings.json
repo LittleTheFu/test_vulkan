@@ -59,6 +59,7 @@
   "C_Cpp.errorSquiggles": "enabled",
   "files.associations": {
     "stdexcept": "cpp",
-    "fstream": "cpp"
+    "fstream": "cpp",
+    "vector": "cpp"
   }
 }
