@@ -185,8 +185,10 @@ private:
             glfwGetFramebufferSize(window, &width, &height);
             glfwWaitEvents();
         }
-        
+
         vkDeviceWaitIdle(device);
+
+        cleanupSwapChain();
 
         createSwapChain();
         createImageViews();
@@ -567,7 +569,8 @@ private:
         createInfo.clipped = VK_TRUE;
         createInfo.oldSwapchain = VK_NULL_HANDLE;
 
-        if (vkCreateSwapchainKHR(device, &createInfo, nullptr, &swapChain) != VK_SUCCESS)
+        VkResult r = vkCreateSwapchainKHR(device, &createInfo, nullptr, &swapChain);
+        if (r != VK_SUCCESS)
         {
             throw std::runtime_error("failed to create swap chain!");
         }
