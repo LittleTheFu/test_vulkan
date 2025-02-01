@@ -346,9 +346,24 @@ private:
     {
         VkCommandBuffer commandBuffer = beginSingleTimeCommands();
 
+        VkBufferImageCopy region{};
+        region.bufferOffset = 0;
+        region.bufferRowLength = 0;
+        region.bufferImageHeight = 0;
+        region.imageSubresource.aspectMask = VK_IMAGE_ASPECT_COLOR_BIT;
+        region.imageSubresource.mipLevel = 0;
+        region.imageSubresource.baseArrayLayer = 0;
+        region.imageSubresource.layerCount = 1;
+        region.imageOffset = {0, 0, 0};
+        region.imageExtent = {
+            width,
+            height,
+            1};
+
+        vkCmdCopyBufferToImage(commandBuffer, buffer, image, VK_IMAGE_LAYOUT_TRANSFER_DST_OPTIMAL, 1, &region);
+
         endSingleTimeCommands(commandBuffer);
     }
-
     void createImage(uint32_t width, uint32_t height, VkFormat format, VkImageTiling tiling, VkImageUsageFlags usage, VkMemoryPropertyFlags properties, VkImage &image, VkDeviceMemory &imageMemory)
     {
         VkImageCreateInfo imageInfo{};
@@ -744,8 +759,8 @@ private:
 
         cleanupSwapChain();
 
-        vkDestroyImage(device, textureImage, nullptr);
-        vkFreeMemory(device, textureImageMemory, nullptr);
+        // vkDestroyImage(device, textureImage, nullptr);
+        // vkFreeMemory(device, textureImageMemory, nullptr);
 
         createSwapChain();
         createImageViews();
@@ -1528,12 +1543,12 @@ private:
             throw std::runtime_error("failed to acquire swap chain image!");
         }
 
+        updateUniformBuffer(currentFrame);
+
         vkResetFences(device, 1, &inFlightFences[currentFrame]);
 
         vkResetCommandBuffer(commandBuffers[currentFrame], 0);
         recordCommandBuffer(commandBuffers[currentFrame], imageIndex);
-
-        updateUniformBuffer(currentFrame);
 
         VkSubmitInfo submitInfo{};
         submitInfo.sType = VK_STRUCTURE_TYPE_SUBMIT_INFO;
