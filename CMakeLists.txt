@@ -13,6 +13,9 @@ include_directories(${PROJECT_SOURCE_DIR}/third/glm/glm)
 
 include_directories(${PROJECT_SOURCE_DIR}/third/vulkan/include)
 
+include_directories(${PROJECT_SOURCE_DIR}/third/stb_image/include)
+
+
 
 add_executable(test_vulkan main.cpp)
 
@@ -25,3 +28,4 @@ file(MAKE_DIRECTORY ${CMAKE_BINARY_DIR}/Debug)
 
 # 复制 shaders 目录到 build/debug 目录
 file(COPY ${CMAKE_SOURCE_DIR}/shaders DESTINATION ${CMAKE_BINARY_DIR}/Debug)
+file(COPY ${CMAKE_SOURCE_DIR}/textures DESTINATION ${CMAKE_BINARY_DIR}/Debug)

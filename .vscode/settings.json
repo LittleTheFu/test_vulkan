@@ -63,6 +63,7 @@
   "files.associations": {
     "stdexcept": "cpp",
     "fstream": "cpp",
-    "vector": "cpp"
+    "vector": "cpp",
+    "cstring": "cpp"
   }
 }

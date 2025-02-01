@@ -5,7 +5,8 @@
             "includePath": [
                 "${workspaceFolder}/third/glfw/include/",
                 "${workspaceFolder}/third/glm/",
-                "${workspaceFolder}/third/vulkan/include/"
+                "${workspaceFolder}/third/vulkan/include/",
+                "${workspaceFolder}/third/stb_image/include/"
             ],
             "compilerPath": "D:/Program Files/mingw64/mingw64/bin/gcc.exe",
             "cStandard": "${default}",
